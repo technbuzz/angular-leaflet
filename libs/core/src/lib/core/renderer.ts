@@ -1,6 +1,8 @@
 import { inject, Injectable, Renderer2, RendererFactory2, RendererStyleFlags2, RendererType2 } from "@angular/core";
 import { ɵDomRendererFactory2 as DomRendererFactory2 } from '@angular/platform-browser';
 
+import * as L from 'leaflet';
+
 
 /*
   * It's injectable which means we can inject stuff here
@@ -35,6 +37,12 @@ export class LeafletRenderer implements Renderer2 {
   }
   createElement(name: string, namespace?: string | null) {
     console.log("create element --->", name)
+    const leafName = name.startsWith('ngl') ? name.slice(4) : name;
+    const leafConstructor = (L as any)[leafName];
+    if(leafConstructor) {
+      console.log("leaf constructor --->", leafConstructor)
+      return new leafConstructor();
+    }
     return this.delegate.createElement(name, namespace);
   }
   createComment(value: string) {

@@ -21,7 +21,10 @@
             "input": "apps/kitchen-sink/public"
           }
         ],
-        "styles": ["apps/kitchen-sink/src/styles.css"],
+        "styles": [
+          "apps/kitchen-sink/src/styles.css",
+          "node_modules/leaflet/dist/leaflet.css"
+        ],
         "scripts": []
       },
       "configurations": {
